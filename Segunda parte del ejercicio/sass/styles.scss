@@ -1,0 +1,48 @@
+/*importamos las páginas*/
+@import "generales";
+@import "barra";
+@import "animaciones";
+@import "colores";
+
+
+/*creando los strips*/
+.strips{
+    @include crearBarra(100vh, 100vw);
+    cursor: pointer;
+    .strip{
+        @include crearBarra(100vh,19.9vw);
+        position: relative;
+        margin: 0.1vw;
+        align-items: center;
+        justify-content: center;
+        .strip_content{
+            @include crearBarra(100vh, 100%);
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+        }
+    }
+}    
+
+    /*haciendo el :before de los strips*/
+    .strips .strip_content::before{
+        content: "";
+        @include crearBarra(100vh,20vw);
+        @include transform((center center),30deg,scaleY(1),(all 0.6s),(0.23,1,0.32,1));
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background: white;
+        opacity: 0.05;
+    } 
+    .strip_content:hover:before{
+        @include transform(0,0deg,scaleX(2),0,0);
+        opacity: 0.2;
+    }
+    /*damos estilo y animación a los hijos*/
+    @include colorBarra();
+    @include transformHijos();   
+

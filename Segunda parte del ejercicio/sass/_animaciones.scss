@@ -1,0 +1,25 @@
+/*transforms para el ::before*/
+@mixin transform($origen,$skew,$scale,$transition,$bezier){
+  transform-origin: $origen;
+  transform: skew($skew) $scale translate(0, 0);
+  transition: $transition cubic-bezier($bezier,);
+}
+
+/*transform de los hijos*/
+@mixin keyframes($nombre, $dato){
+        @keyframes #{$nombre}{
+            from {
+                transform: translate3d($dato);
+              }
+            }
+}
+
+@mixin transformHijos(){
+  $translate: (-100%, 0, 0) (0, 100%, 0) (0, -100%, 0) (0, 100%, 0) (100%, 0, 0);
+  $nombreAnimacion: "strip--u4rx9pe" "strip--u4rx9pg" "strip--u4rx9q8" "strip--u4rx9qn" "strip--u4rx9r0";
+  $i: 1;
+  @for $i from 1 through 5{
+      @include keyframes((nth($nombreAnimacion,$i)),(nth($translate,$i)));
+      
+  }
+} 
